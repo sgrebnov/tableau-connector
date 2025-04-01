@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<connection-fields>
+  <field name="server" label="Server" value-type="string" category="endpoint" default-value="localhost">
+  </field>
+
+  <field name="port" label="Port" value-type="string" category="endpoint" default-value="50051" />
+
+  <field name="sslmode" label="Use SSL" value-type="boolean" category="general" default-value="" >
+    <boolean-options>
+      <false-value value="" />
+      <true-value value="require" />
+    </boolean-options>
+  </field>
+
+  <field name="authentication" label="Authentication" category="authentication" value-type="selection" default-value="auth-user-pass" >
+    <selection-group>
+      <option value="auth-none" label="No Auth"/>
+      <option value="auth-api-key" label="Api Key Auth"/>
+    </selection-group>
+  </field>
+   <field name="password" label="Api Key" category="authentication" value-type="string" secure="true">
+    <conditions>
+      <condition field="authentication" value="auth-api-key"/>
+    </conditions>
+  </field>
+
+  <field name="v-disable-certificate-verification" label="Disable Certificate Verification" value-type="boolean" category="advanced" default-value="" >
+    <boolean-options>
+      <false-value value="" />
+      <true-value value="disable" />
+    </boolean-options>
+  </field>
+
+</connection-fields>
