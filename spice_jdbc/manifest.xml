@@ -28,7 +28,6 @@
       <customization name="CAP_SUPPORTS_UNION" value="yes"/>
       <customization name="CAP_QUERY_WHERE_FALSE_METADATA" value="yes"/>
       <customization name="CAP_SUPPRESS_TEMP_TABLE_CHECKS" value="yes"/>
-
     </customizations>
   </connection-customization>
   <connection-fields file='connectionFields.xml'/>

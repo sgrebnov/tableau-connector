@@ -1,17 +1,31 @@
 (function propertiesbuilder(attr) {
 
+    function isValueSet(value) {
+        return value !== undefined && value !== null && value !== "";
+    }
+
     // Supported params: https://arrow.apache.org/docs/java/flight_sql_jdbc_driver.html
     var props = {};
 
-    if (attr[connectionHelper.attributeSSLMode] == "require") {
-        props["useEncryption"] = 1;
-    } else {
-        props["useEncryption"] = 0;
+    const product = attr["v-spice-product"];
+    const isUseSSL = attr["sslmode"];
+
+    function sslRequired(product) {
+        return (product === "v-cloud" || isUseSSL === "require" || isUseSSL === "required");
     }
 
-    if (attr["v-disable-certificate-verification"] != "") {
-        props["disableCertificateVerification"] = 1;
-    };
+    if (sslRequired(product)) {
+        props["useEncryption"] = "true";
+    } else {
+        props["useEncryption"] = "false";
+    }
+
+    // API key
+    if (isValueSet(attr["password"])) {
+        props["password"] = attr["password"];
+    }
+
+    props["disableCertificateVerification"] = attr["v-disable-cert-verification"];
 
     return props;
 })

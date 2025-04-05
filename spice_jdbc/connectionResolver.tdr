@@ -6,13 +6,18 @@
     </connection-builder>
     <connection-normalizer>
       <required-attributes>
+        <default-attributes>
+          <default-attribute name='server'>flight.spiceai.io</default-attribute>
+          <default-attribute name='port'>443</default-attribute>
+        </default-attributes>
         <attribute-list>
+          <attr>v-spice-product</attr>
           <attr>server</attr>
           <attr>port</attr>
           <attr>sslmode</attr>
           <attr>authentication</attr>
           <attr>password</attr>
-          <attr>v-disable-certificate-verification</attr>
+          <attr>v-disable-cert-verification</attr>
         </attribute-list>
       </required-attributes>
     </connection-normalizer>
