@@ -22,6 +22,7 @@
 
     // API key
     if (isValueSet(attr["password"])) {
+        props["user"] = attr[""];
         props["password"] = attr["password"];
     }
 
