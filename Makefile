@@ -16,6 +16,7 @@ run-tableau-allow-unsigned:
 	echo "Running: $$TABLEAU_APP -DConnectPluginsPath=$$PLUGIN_PATH"; \
 	"$$TABLEAU_APP" -DDisableVerifyConnectorPluginSignature=true
 
+# Runs TDVT tests with the Spice connector currently installed to Tableau.
 .PHONY: test
 test:
 	make -C tdvt
