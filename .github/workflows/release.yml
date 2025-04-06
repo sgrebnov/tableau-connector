@@ -1,0 +1,33 @@
+name: release
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Spice Tableau connector
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install Make
+        run: |
+          brew install make
+
+      - name: Package the connector
+        run: |
+          make package
+
+      - name: Upload the taco
+        uses: actions/upload-artifact@v4
+        with:
+          name: spice.taco
+          path: ./spice.taco
+          if-no-files-found: error
