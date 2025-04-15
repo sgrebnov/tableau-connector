@@ -5,31 +5,12 @@ on:
     types: [created]
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.13
-
-      - name: Install Make
+      - name: Sign ${{ inputs.signed_binary_name }}
+        shell: powershell
+        env:
+          DIGICERT_TOKEN_CFG_PATH: ${{ secrets.TEST1 }}
         run: |
-          brew install make
-
-      - name: Package
-        run: |
-          make package
-
-      - name: Upload
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          draft: true
-          prerelease: true
-          fail_on_unmatched_files: true
-          files: spice.taco
+          echo $env:DIGICERT_TOKEN_CFG_PATH
+          echo $DIGICERT_TOKEN_CFG_PATH
