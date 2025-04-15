@@ -12,5 +12,7 @@ jobs:
         env:
           DIGICERT_TOKEN_CFG_PATH: ${{ secrets.TEST1 }}
         run: |
+          echo "v1"
           echo $env:DIGICERT_TOKEN_CFG_PATH
+          echo "v2"
           echo $DIGICERT_TOKEN_CFG_PATH
